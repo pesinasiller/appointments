@@ -38,11 +38,9 @@ const response = {
   ]
 };
 
-const initialApointments = response.appointments;
-
 function Day(props) {
-  const [appointments, setAppointments] = useState(initialApointments);
-  
+  const [appointments, setAppointments] = useState([]);
+
   const setBooked = (appointmentDate) => {
     const updatingAppointment = {
       "date": appointmentDate,
@@ -84,6 +82,9 @@ function Day(props) {
 
   useEffect(() => {
        getAppointments().then((data) => setAppointments(data));
+       // mock response:
+       const initialApointments = response.appointments;
+       setAppointments(initialApointments);
    }, []);
 
   const timeSpans = appointments.map((appointment)=> {
